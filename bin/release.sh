@@ -35,7 +35,7 @@ echo # Blank line around input
 read -p "What type of release are we doing? [major, minor, patch] " TYPE
 
 # Validate the user input
-if [[ ! $TYPE == major || ! $TYPE == minor || ! $TYPE == patch ]]; then
+if [[ ! $TYPE == major && ! $TYPE == minor && ! $TYPE == patch ]]; then
   # Throw error with red text
   error "Invalid selection: $TYPE."
 fi
