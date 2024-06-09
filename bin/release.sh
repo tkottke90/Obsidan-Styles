@@ -1,24 +1,45 @@
 #! /bin/bash
 
-RED='\e[0;31m'
+function error() {
+  echo "\e[0;31m ERROR: $1"
+  tput sgr0
+  exit 1
+}
 
 echo "> Setting up script"
+
+# Check if the user has the git command
+if ! command -v git &>/dev/null; then
+  error "Git is not installed or not available in PATH."
+  exit 1
+fi
+
+# Check if the user has the github cli (for releases)
+if ! command -v gh &>/dev/null; then
+  error "Github CLI missing.  This is needed for doing the release."
+  exit 1
+fi
+
+# Check if the user has logged into github
+USER_LOGGED_IN=$(gh auth status)
+if grep -q "Logged in to github.com" <<< "$output"; then
+  echo "> Not logged into GH CLI, logging in..."
+  gh auth login
+fi
 
 # Updating npm for this command
 npm config set git-tag-version true
 
-echo
+echo # Blank line around input
 # Ask the user what type of release you are doing
 read -p "What type of release are we doing? [major, minor, patch] " TYPE
 
 # Validate the user input
 if [[ ! $TYPE == major || ! $TYPE == minor || ! $TYPE == patch ]]; then
   # Throw error with red text
-  echo "${RED}ERROR: Invalid selection: $TYPE."
-  tput sgr0
-  exit 1
+  error "Invalid selection: $TYPE."
 fi
-echo
+echo # Blank line around input
 
 # Build
 echo "> Building..."
@@ -33,10 +54,33 @@ npm version $TYPE -m "Upgrade to %s"
 # Get Version from package.json
 VERSION=$(cat package.json | grep version | head -n 1 | cut -d '"' -f 4)
 
-echo "> New Version: $VERSION"
+echo "  New Version: $VERSION"
+
+echo "> Building Release Artifact..."
+ARTIFACT_FN="obsidian-styles.$VERSION.tar.gz"
+tar -czvf $ARTIFACT_FN dist/
+
+echo "> Creating Release"
+read -p "Optionally, you can title the release. (leave blank to skip) " TITLE
+
+# Set the title to the version if one is not provided
+if [ -z "$TITLE" ]; then
+  TITLE=$VERSION
+fi
+
+gh release create \
+  --latest \
+  --generate-notes  \
+  --verify-tag  \
+  --discussion-category "General"
+  $VERSION \
+  "$ARTIFACT_FN#Style Files"
 
 echo "> Cleanup..."
 # Undo config changes
 npm config set git-tag-version true
+
+# Delete dist file
+rm -rf $ARTIFACT_FN
 
 echo "> Release Complete"
