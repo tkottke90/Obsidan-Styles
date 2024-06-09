@@ -1,0 +1,17 @@
+{
+  "name": "@tkottke90/obsidan-styles",
+  "version": "1.0.0",
+  "description": "Collection of Obsidian Styling for my notebooks that can be imported into the snippets folder",
+  "scripts": {
+    "deploy": "source ./bin/deploy.sh",
+    "build": "rm -rf dist && sass --no-source-map src:dist",
+    "watch": "rm -rf dist && sass --no-source-map --watch src:dist"
+  },
+  "repository": "https://github.com/tkottke90/Obsidan-Styles",
+  "keywords": [],
+  "author": "Thomas Kottke <t.kottke90@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "^1.77.4"
+  }
+}
