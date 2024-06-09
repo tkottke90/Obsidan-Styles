@@ -56,9 +56,9 @@ VERSION=$(cat package.json | grep version | head -n 1 | cut -d '"' -f 4)
 
 echo "  New Version: $VERSION"
 
-echo "> Building Release Artifact..."
 ARTIFACT_FN="obsidian-styles.$VERSION.tar.gz"
-tar -czvf $ARTIFACT_FN dist/
+echo "> Building Release Artifact [$ARTIFACT_FN]"
+tar -czf $ARTIFACT_FN dist/
 
 echo "> Creating Release"
 read -p "Optionally, you can title the release. (leave blank to skip) " TITLE
@@ -71,7 +71,6 @@ fi
 gh release create \
   --latest \
   --generate-notes  \
-  --verify-tag  \
   --discussion-category "General"
   $VERSION \
   "$ARTIFACT_FN#Style Files"
