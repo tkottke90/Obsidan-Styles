@@ -4,7 +4,11 @@ This is a collection of CSS style sheets that I use with my Obsidian notebook.  
 
 This module uses [Dart-Sass](https://github.com/sass/dart-sass?tab=readme-ov-file) to automatically compile the SCSS files into CSS.
 
-## ghSetup
+## Setup in Obsidian
+
+I have provided a couple of options for setting up in Obsidian.  The easiest is to go to the [releases](https://github.com/tkottke90/Obsidan-Styles/releases) page and download the latest tar file.  This archive contains all the files in the `dist` directory and can be dropped immediately into your Obsidian Snippets folder (`<Obsidian Directory Location>/.obsidian/snippets`).
+
+
 
 The files have already been built.  To set this up on your computer, first clone the repo:
 
