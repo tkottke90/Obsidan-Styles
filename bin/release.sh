@@ -58,7 +58,7 @@ echo "  New Version: $VERSION"
 
 ARTIFACT_FN="obsidian-styles.$VERSION.tar.gz"
 echo "> Building Release Artifact [$ARTIFACT_FN]"
-tar -czf $ARTIFACT_FN dist/
+(cd dist; tar -czf "../$ARTIFACT_FN" *)
 
 echo "> Creating Release"
 read -p "Optionally, you can title the release. (leave blank to skip) " TITLE
@@ -71,9 +71,9 @@ fi
 gh release create \
   --latest \
   --generate-notes  \
-  --discussion-category "General"
+  --discussion-category "General" \
   $VERSION \
-  "$ARTIFACT_FN#Style Files"
+  "$ARTIFACT_FN"
 
 echo "> Cleanup..."
 # Undo config changes

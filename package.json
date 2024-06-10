@@ -1,6 +1,6 @@
 {
   "name": "@tkottke90/obsidan-styles",
-  "version": "0.0.0",
+  "version": "1.0.1",
   "description": "Collection of Obsidian Styling for my notebooks that can be imported into the snippets folder",
   "scripts": {
     "build": "rm -rf dist && sass --no-source-map src:dist",
@@ -13,6 +13,7 @@
   "author": "Thomas Kottke <t.kottke90@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^20.14.2",
     "sass": "^1.77.4"
   }
 }
