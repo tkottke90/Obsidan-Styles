@@ -71,9 +71,9 @@ fi
 gh release create \
   --latest \
   --generate-notes  \
-  --discussion-category "General"
+  --discussion-category "General" \
   $VERSION \
-  "$ARTIFACT_FN#Style Files"
+  "$ARTIFACT_FN"
 
 echo "> Cleanup..."
 # Undo config changes
