@@ -73,7 +73,7 @@ gh release create \
   --generate-notes  \
   --discussion-category "General" \
   $VERSION \
-  "$ARTIFACT_FN"
+  $ARTIFACT_FN
 
 echo "> Cleanup..."
 # Undo config changes

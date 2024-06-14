@@ -4,29 +4,28 @@
 # Get script directory
 SCRIPT=$(realpath $0)
 SCRIPT_DIR=$(dirname $SCRIPT)
-LOCAL_JQ="$SCRIPT_DIR/jq"
-
-JQ_NATIVE=1
 
 # Check if the user has the git command
 echo "> Checking for JQ...."
-if ! command -v jq &>/dev/null; then
-  curl -L https://github.com/jqlang/jq/releases/download/jq-1.7/jq-macos-arm64 -o $LOCAL_JQ
-  chmod +x $LOCAL_JQ
-  JQ_NATIVE=0
+if ! command -v node &>/dev/null; then
+  echo "ERROR: NodeJS required"
+  exit(1)
 fi
 
 # Get Asset Data
 echo "> Loading asset data..."
 response=$(curl -s https://api.github.com/repos/tkottke90/Obsidan-Styles/releases/latest)
 
-echo $response
+echo $response > temp.json
 
-echo "> Parsing Response..."
+echo "> Parsing Response"
 ASSET_KEY='.assets[] .id'
 if [ $JQ_NATIVE -eq 1 ]; then
-  ASSET_NAMES=$(jq --args $ASSET_KEY $response)
+  echo "  Using native JQ..."
+  which jq
+  ASSET_NAMES=$(jq --args '.assets[] .id' $response)
 else
+  echo "  Using local JQ..."
   ASSET_NAMES=$(/bin/bash $LOCAL_JQ --args $ASSET_KEY $response)
 fi
 
