@@ -1,3 +1,5 @@
+const { writeFileSync } = require('fs');
+const path = require('path');
 
 /**
  * Helper function to parse http responses
@@ -23,15 +25,18 @@ async function getReleaseDetails(owner, repo) {
   const { name, assets } = await fetch(`${rootPath}/releases/latest`).then(parseHttpResponse);
   const assetName = `obsidian-styles.${name}.tar.gz`;
 
-  const tarbalAsset = assets.find(asset => asset.name === assetName);
+  const tarballAsset = assets.find(asset => asset.name === assetName);
 
-  if (!tarbalAsset) {
+  if (!tarballAsset) {
     throw new Error('ERROR: No Matching Asset Found')
   }
 
-  const tarball = await fetch(tarbalAsset.browser_download_url).then(response => response.arrayBuffer());
+  const tarball = await fetch(tarballAsset.browser_download_url).then(response => response.arrayBuffer());
+  const fullPath = path.resolve('..', assetName)
 
-  debugger;
+  writeFileSync(fullPath, Buffer.from(tarball))
+
+  console.log(fullPath)
 }
 
 getReleaseDetails('tkottke90', 'Obsidan-Styles');
