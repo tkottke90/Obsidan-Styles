@@ -15,6 +15,26 @@ if [ ! -d "$OBSIDIAN" ]; then
   exit 1
 fi
 
+# Check if we have a `.scripts` file in the root of this repo
+if [ -f "./.scripts" ]; then
+  echo "Found .obsidian file, running obsidian deploy."
+  SCRIPTS=$(cat "./.scripts")
+else
+  read -p "What is the location of your Obsidian Scripts Directory? " SCRIPTS
+  echo $SCRIPTS >> ./.scripts
+fi
+
+# Check for Obsidian directory exists
+if [ ! -d "$OBSIDIAN" ]; then
+  echo "Could not find $OBSIDIAN, please check and try again."
+  exit 1
+fi
+
+if [ ! -d "$SCRIPTS" ]; then
+  echo "Could not find $OBSIDIAN, please check and try again."
+  exit 1
+fi
+
 # Check that the ".obsidian/snippets" directory exists in the Obsidian directory
 if [ ! -d "$OBSIDIAN/.obsidian/snippets" ]; then
   # Create the directory if it does not
@@ -28,4 +48,12 @@ rsync \
   --human-readable \
   --progress \
   --update \
-  dist/*  "$OBSIDIAN/.obsidian/snippets"
+  dist/styles/*  "$OBSIDIAN/.obsidian/snippets"
+
+rsync \
+  --recursive \
+  --checksum \
+  --human-readable \
+  --progress \
+  --update \
+  dist/scripts/*  "$SCRIPTS"

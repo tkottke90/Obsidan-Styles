@@ -3,7 +3,9 @@
   "version": "1.0.2",
   "description": "Collection of Obsidian Styling for my notebooks that can be imported into the snippets folder",
   "scripts": {
-    "build": "rm -rf dist && sass --no-source-map src:dist",
+    "build:styles": "sass --no-source-map src:dist/styles",
+    "build:scripts": "cp -r scripts dist/scripts",
+    "build": "rm -rf dist && npm run build:styles && npm run build:scripts",
     "deploy": "source ./bin/deploy.sh",
     "release": "./bin/release.sh",
     "watch": "rm -rf dist && sass --no-source-map --watch src:dist"
