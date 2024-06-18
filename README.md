@@ -1,37 +1,43 @@
 # Obsidian Styles
 
-This is a collection of CSS style sheets that I use with my Obsidian notebook.  I wanted to use SCSS to create styles but that was not natively supported by Obsidian.  So I created this repository to maintain my styles and make it easy to reuse them in other notebooks.
+![GitHub package.json version](https://img.shields.io/github/package-json/v/tkottke90/Obsidan-Styles)
 
-This module uses [Dart-Sass](https://github.com/sass/dart-sass?tab=readme-ov-file) to automatically compile the SCSS files into CSS.
+This is a collection of CSS style sheets and JS Snippets that I use with my Obsidian notebook.  
 
-## Setup in Obsidian
+## Documentation
 
-I have provided a couple of options for setting up in Obsidian.  The easiest is to go to the [releases](https://github.com/tkottke90/Obsidan-Styles/releases) page and download the latest tar file.  This archive contains all the files in the `dist` directory and can be dropped immediately into your Obsidian Snippets folder (`<Obsidian Directory Location>/.obsidian/snippets`).
+Usage documentation can be found in the [Wiki Page](https://github.com/tkottke90/Obsidan-Styles/wiki) for this repository.  To learn about how to install this yourself or how to use any of the provided tools, you can find that all there.
 
+## Issues & Discussions
 
+This repo is something I plan on continuing to improve over time.  If you find any issues, feel free to open an [Issue](https://github.com/tkottke90/Obsidan-Styles/issues) and I will take a look as time permits.  Some issues may be moved to discussions as well if it is an enhancement or new feature.
 
-The files have already been built.  To set this up on your computer, first clone the repo:
-
-```bash
-git clone https://github.com/tkottke90/Obsidan-Styles@v1.0.0
-```
-
-Then simply run the `deploy` command:
-
-```bash
-npm run deploy
-```
-
-> If it is your first time running the script you will prompted to provide your Obsidian vault location.
-> 
-> ```bash
-> $ npm run deploy
-> @tkottke90/obsidan-styles@1.0.0 deploy
-> source ./bin/deploy.sh
-> 
-> What is the location of your Obsidian Vault? 
-> ```
+> Important
 >
-> The script will create a `.obsidian` file in the root directory so that you wont be asked again
+> One important ask I have before opening an issue is that I will not specifically add features for plugins I do not use.  This repository is first and foremost for me to maintain resources across vaults.
 
-This script will copy the files from the `dist` directory to the `.obsidian/snippets` folder inside of your Vault directory.  If you have not already created this folder, it will be created for you.
+
+## Developer Setup & Contribution
+
+Pull requests, bug reports, and all other forms of contribution are welcomed and highly encouraged! :octocat:
+
+To develop against this repository you will need NodeJS and NPM.  I wanted to use SCSS to create styles but that was not natively supported by Obsidian. This module uses [Dart-Sass](https://github.com/sass/dart-sass?tab=readme-ov-file) to automatically compile the SCSS files into CSS.
+
+Once you clone the repository to your local machine, install the packages:
+
+```sh
+npm install
+```
+
+Next, create 2 text files in the root directory which target your Obsidian Notebook (specifically the root and scripts folders).  The contents of those files should be the path to your Obsidian Vault and the Templater Scripts directory in your Vault.  I recommend creating a testing vault for developing against to avoid breaking your current vault. 
+
+```sh
+echo '<path to Obsidian Vault>' > .obsidian.local
+echo '<path to Templater Scripts>' > .scripts.local
+```
+
+Finally, a watcher npm script has been setup which will automatically compile and deploy the changes automatically for you.
+
+```sh
+npm run watch
+```

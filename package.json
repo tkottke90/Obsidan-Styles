@@ -7,7 +7,7 @@
     "build:scripts": "cp -r scripts dist/scripts",
     "build": "rm -rf dist && npm run build:styles && npm run build:scripts",
     "deploy": "source ./bin/deploy.sh",
-    "deploy:dev": "npm run build && /bin/zsh ./bin/deploy.sh -o .obsidian.old -s .scripts.old",
+    "deploy:dev": "npm run build && /bin/zsh ./bin/deploy.sh -o .obsidian.local -s .scripts.local",
     "release": "./bin/release.sh",
     "watch": "onchange 'src/**/*.scss' 'scripts/**/*' -- npm run deploy:dev"
     
@@ -16,6 +16,9 @@
   "keywords": [],
   "author": "Thomas Kottke <t.kottke90@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
   "devDependencies": {
     "@types/node": "^20.14.2",
     "sass": "^1.77.4"
