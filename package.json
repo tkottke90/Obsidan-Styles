@@ -10,7 +10,6 @@
     "deploy:dev": "npm run build && /bin/zsh ./bin/deploy.sh -o .obsidian.local -s .scripts.local",
     "release": "./bin/release.sh",
     "watch": "onchange 'src/**/*.scss' 'scripts/**/*' -- npm run deploy:dev"
-    
   },
   "repository": "https://github.com/tkottke90/Obsidan-Styles",
   "keywords": [],
@@ -21,6 +20,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.14.2",
+    "obsidian": "^1.4.11",
     "sass": "^1.77.4"
   },
   "dependencies": {
