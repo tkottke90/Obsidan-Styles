@@ -56,4 +56,6 @@ module.exports = async (tp) => {
   await app.vault.create(`${projectFolder}/${projectName}.canvas`, "{}")
 
   await tp.file.move(`${projectFolder}/README.md`)
+
+  return projectName
 }

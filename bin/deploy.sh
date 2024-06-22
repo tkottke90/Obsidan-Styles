@@ -3,22 +3,24 @@
 function usage() {
   # Usage message
   echo "Obsidian Styles Repo - Deploy Script"
-  echo "usage: deploy.sh [-o arg1] [-s arg2] [-h]"
+  echo "usage: deploy.sh [-o obsidian vault path] [-s scripts folder name] [-t template folder name] [-h]"
 
 }
 
-
 OBSIDIAN_REF='.obsidian'
 SCRIPT_REF='.scripts'
+TEMPLATE_REF='.templates'
 
-while getopts ":o:s:h" opt; do
-  echo "$opt: $OPTARG"
+while getopts ":o:s:t:h" opt; do
   case $opt in
     o)
       OBSIDIAN_REF=$OPTARG
       ;;
     s)
       SCRIPT_REF=$OPTARG
+      ;;
+    t)
+      TEMPLATE_REF=$OPTARG
       ;;
     h)
       usage
@@ -31,38 +33,33 @@ while getopts ":o:s:h" opt; do
   esac
 done
 
+function getRefFile() {
+  local ref=$1
+  local query=$2
 
-# Check if we have a `.obsidian` file in the root of this repo
-if [ -f "./$OBSIDIAN_REF" ]; then
-  echo "Found .obsidian file, running obsidian deploy."
-  OBSIDIAN=$(cat "./$OBSIDIAN_REF")
-else
-  read -p "What is the location of your Obsidian Vault? " OBSIDIAN
-  echo $OBSIDIAN >> ./$OBSIDIAN_REF
-fi
+  if [ ! -f "./$ref" ]; then
+    read -p "$query " result
+    echo $result >> ./$ref
+  fi
+}
 
-# Check for Obsidian directory exists
+function updateDir() {
+  echo $@
+  echo "Source: $1"
+  echo "Dest: $2"
+
+  rsync \
+    --recursive \
+    --checksum \
+    --human-readable \
+    --update \
+    $1 $2
+}
+
+getRefFile $OBSIDIAN_REF "What is the location of your Obsidian Vault?"
+OBSIDIAN=$(cat "./$OBSIDIAN_REF")
+
 if [ ! -d "$OBSIDIAN" ]; then
-  echo "Could not find $OBSIDIAN, please check and try again."
-  exit 1
-fi
-
-# Check if we have a `.scripts` file in the root of this repo
-if [ -f "./$SCRIPT_REF" ]; then
-  echo "Found .scripts file, running obsidian deploy."
-  SCRIPTS=$(cat "./$SCRIPT_REF")
-else
-  read -p "What is the location of your Obsidian Scripts Directory? " SCRIPTS
-  echo $SCRIPTS >> ./$SCRIPT_REF
-fi
-
-# Check for Obsidian directory exists
-if [ ! -d "$OBSIDIAN" ]; then
-  echo "Could not find $OBSIDIAN, please check and try again."
-  exit 1
-fi
-
-if [ ! -d "$SCRIPTS" ]; then
   echo "Could not find $OBSIDIAN, please check and try again."
   exit 1
 fi
@@ -73,19 +70,24 @@ if [ ! -d "$OBSIDIAN/.obsidian/snippets" ]; then
   mkdir -p "$OBSIDIAN/.obsidian/snippets"
 fi
 
-# Use rsync to copy all files in this repo to the Obsidian snippets folder
-rsync \
-  --recursive \
-  --checksum \
-  --human-readable \
-  --progress \
-  --update \
-  dist/styles/*  "$OBSIDIAN/.obsidian/snippets"
+getRefFile $SCRIPT_REF "What folder is configured for your Templater Scripts?"
+SCRIPTS=$(cat "./$SCRIPT_REF")
 
-rsync \
-  --recursive \
-  --checksum \
-  --human-readable \
-  --progress \
-  --update \
-  dist/scripts/*  "$OBSIDIAN/$SCRIPTS"
+
+if [ ! -d "$SCRIPTS" ]; then
+  echo "Could not find $SCRIPTS, please check and try again."
+  exit 1
+fi
+
+getRefFile $TEMPLATE_REF "What folder is configured for your Templater Templates?"
+TEMPLATES=$(cat "./$TEMPLATE_REF")
+
+if [ ! -d "$TEMPLATES" ]; then
+  echo "Could not find $TEMPLATES, please check and try again."
+  exit 1
+fi
+
+# Use rsync to copy all files in this repo to the Obsidian snippets folder
+updateDir dist/styles/  "$OBSIDIAN/.obsidian/snippets"
+updateDir dist/scripts/  "$OBSIDIAN/$SCRIPTS"
+updateDir dist/templates/ "$OBSIDIAN/$TEMPLATES"
