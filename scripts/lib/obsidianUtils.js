@@ -1,7 +1,3 @@
-function getFilesInFolder(path) {
-  return app.vault.getFiles().filter(file => file.path.startsWith(path))
-}
-
 /**
  * Gets the number of files in a folder and returns the count
  * @param {string} path 
@@ -9,6 +5,14 @@ function getFilesInFolder(path) {
  */
 function countFilesInDir(path) {
   return getFilesInFolder(path).length
+}
+
+async function createDirectory(path) {
+  return await app.vault.createFolder(path)
+}
+
+function getFilesInFolder(path) {
+  return app.vault.getFiles().filter(file => file.path.startsWith(path))
 }
 
 async function openFileIfExists(tp, path, filename) {
@@ -26,7 +30,8 @@ async function openFileIfExists(tp, path, filename) {
 }
 
 module.exports = () => ({
-  getFilesInFolder,
   countFilesInDir,
+  createDirectory,
+  getFilesInFolder,
   openFileIfExists
 })
