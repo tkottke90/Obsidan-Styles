@@ -1,11 +1,11 @@
 # TODO: Create a script to load the file that people can download
-# a-la NVM style
 
-# Get script directory
-SCRIPT=$(realpath $0)
-SCRIPT_DIR=$(dirname $SCRIPT)
+# References for the execution
+APP_DIR="$HOME/.obsidian-styles"
+APP_VERSION="$APP_DIR/.version"
 
-cd $SCRIPT_DIR
+mkdir -p "$APP_DIR/bin/tools"
+cd $APP_DIR
 
 # Check if the user has the git command
 echo "> Checking for Node...."
@@ -15,10 +15,13 @@ if ! command -v node &>/dev/null; then
 fi
 
 # Get Asset Data
-echo "> Loading asset data..."
-file=$(node tools/get-release-response.js)
+DEPLOY_SCRIPT="$APP_DIR/bin/deploy.sh"
+curl -s -o $DEPLOY_SCRIPT https://raw.githubusercontent.com/tkottke90/Obsidan-Styles/main/bin/deploy.sh
 
-cd ..
+RELEASE_HEPER_SCRIPT="$APP_DIR/bin/get-release-response.js"
+curl -s -o $RELEASE_HEPER_SCRIPT https://raw.githubusercontent.com/tkottke90/Obsidan-Styles/main/bin/tools/get-release-response.js
+file=$(node $RELEASE_HEPER_SCRIPT) 
+
 mkdir -p ./dist
 tar -xzf $file -C ./dist
 
@@ -26,7 +29,3 @@ tar -xzf $file -C ./dist
 
 rm -rf $file
 rm -rf ./dist
-
-# grep '"url":' $RESPONSE_STR
-
-  # bash

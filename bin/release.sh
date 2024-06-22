@@ -61,12 +61,6 @@ echo "> Building Release Artifact [$ARTIFACT_FN]"
 (cd dist; tar -czf "../$ARTIFACT_FN" *)
 
 echo "> Creating Release"
-read -p "Optionally, you can title the release. (leave blank to skip) " TITLE
-
-# Set the title to the version if one is not provided
-if [ -z "$TITLE" ]; then
-  TITLE=$VERSION
-fi
 
 gh release create \
   --latest \
