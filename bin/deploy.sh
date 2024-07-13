@@ -53,7 +53,7 @@ function updateDir() {
     --checksum \
     --human-readable \
     --update \
-    $1 $2
+    "$1" "$2"
 }
 
 getRefFile $OBSIDIAN_REF "What is the location of your Obsidian Vault?"
