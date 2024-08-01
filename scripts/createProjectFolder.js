@@ -39,13 +39,13 @@ const KANBAN_LANES = [
 ]
 
 function createKanbanBoard() {
-  return ```
+  return `
 ---
 kanban-plugin: board
 ---
 
 ${KANBAN_LANES.map(lane => `## ${lane}\n\n\n`)}
-```
+`
 }
 
 /**

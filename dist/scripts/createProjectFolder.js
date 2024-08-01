@@ -28,6 +28,26 @@ const SUB_FOLDERS = [
   'Sources'
 ]
 
+const KANBAN_LANES = [
+  'Defining',
+  'Backlog',
+  'Ready',
+  'In Progress',
+  'PR',
+  'Complete',
+  'Released'
+]
+
+function createKanbanBoard() {
+  return `
+---
+kanban-plugin: board
+---
+
+${KANBAN_LANES.map(lane => `## ${lane}\n\n\n`)}
+`
+}
+
 /**
  * Templater Script for creating a new project folder with all the fixings
  * @param {*} tp Templater instance
@@ -53,7 +73,8 @@ module.exports = async (tp) => {
     await app.vault.createFolder(`${projectFolder}/${dir}`)
   }
 
-  await app.vault.create(`${projectFolder}/${projectName}.canvas`, "{}")
+  await app.vault.create(`${projectFolder}/${projectName}.canvas`, JSON.stringify({ nodes: [], edges: [] }))
+  await app.vault.create(`${projectFolder}/${projectName} Kanban.md`, createKanbanBoard())
 
   await tp.file.move(`${projectFolder}/README.md`)
 
