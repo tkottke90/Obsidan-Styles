@@ -2,7 +2,7 @@
 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/tkottke90/Obsidan-Styles)
 
-This is a collection of CSS style sheets and JS Snippets that I use with my Obsidian notebook.  
+This is a collection of CSS style sheets and JS Snippets that I use with my Obsidian notebook.
 
 ## Documentation
 

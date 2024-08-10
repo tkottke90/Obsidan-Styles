@@ -67,7 +67,7 @@ So get out there and finish the projects!
 Below are questions that I want you to answer about this project.
 
 ### Project Description
-*Tell us about your project, what will it do or improve?  Who is it for?  Try to avoid setting a goal here and let this be your dreaming space*
+%%Tell us about your project, what will it do or improve?  Who is it for?  Try to avoid setting a goal here and let this be your dreaming space%%
 
 
 
@@ -81,7 +81,7 @@ Below are questions that I want you to answer about this project.
 
 ---
 ### Project Goal
-*Tell us about what a completed version of your project looks like.  The clearer you are, the easier the rest of planning will be.*
+%%Tell us about what a completed version of your project looks like.  The clearer you are, the easier the rest of planning will be.%%
 
 
 
@@ -97,7 +97,7 @@ Below are questions that I want you to answer about this project.
 
 ---
 ### Reflection
-*This is the last step of the project.  This is your opportunity to muse about what went well and what you would do differently.*
+%%This is the last step of the project.  This is your opportunity to muse about what went well and what you would do differently.%%
 
 
 
