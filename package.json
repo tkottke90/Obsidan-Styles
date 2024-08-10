@@ -1,12 +1,15 @@
 {
   "name": "@tkottke90/obsidan-styles",
   "version": "1.0.2",
+  "type": "module",
   "description": "Collection of Obsidian Styling for my notebooks that can be imported into the snippets folder",
   "scripts": {
+    "build": "npm run build:cleanup && rollup -c && npm run build:styles && npm run build:templates",
+    "build:cleanup": "",
+    "build.old": "rm -rf dist && npm run build:styles && npm run build:scripts && npm run build:templates",
+    "build:templates": "cp -r templates/*.md dist/templates",
     "build:styles": "sass --no-source-map src:dist/styles",
     "build:scripts": "cp -r scripts dist/scripts",
-    "build:templates": "cp -r templates dist/templates",
-    "build": "rm -rf dist && npm run build:styles && npm run build:scripts && npm run build:templates",
     "deploy": "source ./bin/deploy.sh",
     "deploy:dev": "npm run build && /bin/zsh ./bin/deploy.sh -o .obsidian.local -s .scripts.local -t .templates.local",
     "release": "./bin/release.sh",
@@ -20,8 +23,13 @@
     "node": ">=18"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
     "@types/node": "^20.14.2",
+    "glob": "^11.0.0",
     "obsidian": "^1.4.11",
+    "rollup": "^4.20.0",
+    "rollup-plugin-copy": "^3.5.0",
     "sass": "^1.77.4"
   },
   "dependencies": {
