@@ -7,6 +7,7 @@
     "build:scripts": "cp -r scripts dist/scripts",
     "build:templates": "cp -r templates dist/templates",
     "build": "rm -rf dist && npm run build:styles && npm run build:scripts && npm run build:templates",
+    "build:ts": "tsc",
     "deploy": "source ./bin/deploy.sh",
     "deploy:dev": "npm run build && /bin/zsh ./bin/deploy.sh -o .obsidian.local -s .scripts.local -t .templates.local",
     "release": "./bin/release.sh",
@@ -20,9 +21,12 @@
     "node": ">=18"
   },
   "devDependencies": {
+    "@octokit/rest": "^21.1.0",
+    "@octokit/types": "^13.8.0",
     "@types/node": "^20.14.2",
-    "obsidian": "^1.4.11",
-    "sass": "^1.77.4"
+    "obsidian": "^1.7.2",
+    "sass": "^1.77.4",
+    "typescript": "^5.7.3"
   },
   "dependencies": {
     "onchange": "^7.1.0"
