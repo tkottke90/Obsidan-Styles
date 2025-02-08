@@ -31,7 +31,7 @@ export async function getVaultTypes() {
   
   } else {
     console.dir(queryResult);
-    dv.paragraph('There was a problem')
+    dv.el('p', 'There was a problem', { attr: { style: 'padding: 1rem 2rem; background-color: hsla(0, 100%, 50%, 30%); border: 2px solid hsla(0, 100%, 50%, 75%); color: hsla(0, 100%, 50%, 75%); border-radius: 0.25rem;' } })
   }
 }
 
