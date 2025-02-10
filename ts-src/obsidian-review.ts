@@ -1,4 +1,3 @@
-
 interface DataviewQueryResult<DataType> {
   successful: boolean;
   value: {
@@ -7,7 +6,7 @@ interface DataviewQueryResult<DataType> {
   }
 }
 
-export async function getVaultTypes() {
+async function getVaultTypes() {
   const queryResult: DataviewQueryResult<[string, string]>  = await dv.query(`
   TABLE WITHOUT ID file.frontmatter.type as Type, file.frontmatter.sub-type as Sub-Type
   WHERE file.frontmatter.type
@@ -30,12 +29,12 @@ export async function getVaultTypes() {
     );
   
   } else {
-    console.dir(queryResult);
-    dv.el('p', 'There was a problem', { attr: { style: 'padding: 1rem 2rem; background-color: hsla(0, 100%, 50%, 30%); border: 2px solid hsla(0, 100%, 50%, 75%); color: hsla(0, 100%, 50%, 75%); border-radius: 0.25rem;' } })
+    console.log('there was a problem querying the vault')
+    // showError('There was a problem querying the vault')
   }
 }
 
-export async function getNotesWithoutTypes() {
+async function getNotesWithoutTypes() {
   const queryResult: DataviewQueryResult<[string, string]> = await dv.query(`
   TABLE WITHOUT ID file.frontmatter.type as Type, file.frontmatter.sub-type as Sub-Type
   WHERE !file.frontmatter.type or !file.frontmatter.sub-type
@@ -63,5 +62,3 @@ export async function getNotesWithoutTypes() {
   }
 }
 
-
-export {}
