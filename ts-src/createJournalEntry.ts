@@ -4,7 +4,7 @@
  * @param {string} prompt Prompt to be passed to the user 
  * @returns 
  */
-module.exports = async (tp, prompt) => {
+module.exports = async (tp: Templater, prompt: string) => {
   const response = await tp.system.prompt(prompt, null, true, false);
 
   if (!response) {

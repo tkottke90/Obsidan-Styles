@@ -1,9 +1,9 @@
 /**
  * Templater Script for creating a new resource folder with a troubleshooting folder
- * @param {*} tp Templater instance
+ * @param {Templater} tp Templater instance
  * @returns 
  */
-module.exports = async (tp) => {
+module.exports = async (tp: Templater) => {
   const path = await tp.system.prompt("Where will the new folder be located?", null, true, false);
 
   if (!path) {
