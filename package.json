@@ -2,6 +2,7 @@
   "name": "@tkottke90/obsidan-styles",
   "version": "1.0.2",
   "description": "Collection of Obsidian Styling for my notebooks that can be imported into the snippets folder",
+  "type": "module",
   "scripts": {
     "build:styles": "sass --no-source-map src:dist/styles",
     "build:scripts": "cp -r scripts dist/scripts",
@@ -13,7 +14,9 @@
     "deploy": "source ./bin/deploy.sh",
     "deploy:dev": "/bin/zsh ./bin/deploy.sh -o .obsidian.local -s .scripts.local -t .templates.local",
     "release": "./bin/release.sh",
-    "watch": "onchange 'src/**/*.scss' 'scripts/**/*' 'templates/**/*' -- npm run deploy:dev"
+    "watch": "onchange 'src/**/*.scss' 'scripts/**/*' 'templates/**/*' -- npm run deploy:dev",
+    "test": "mocha",
+    "test:watch": "mocha -w"
   },
   "repository": "https://github.com/tkottke90/Obsidan-Styles",
   "keywords": [],
@@ -27,15 +30,35 @@
     "@octokit/types": "^13.8.0",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.2",
+    "@swc-node/register": "^1.10.9",
+    "@types/chai": "^5.0.1",
+    "@types/mocha": "^10.0.10",
     "@types/node": "^20.14.2",
+    "@types/sinon": "^17.0.3",
+    "chai": "^5.1.2",
     "glob": "^11.0.1",
+    "mocha": "^11.1.0",
     "obsidian": "^1.7.2",
     "rollup": "^4.34.6",
     "sass": "^1.77.4",
+    "sinon": "^19.0.2",
     "tslib": "^2.8.1",
     "typescript": "^5.7.3"
   },
   "dependencies": {
     "onchange": "^7.1.0"
+  },
+  "mocha": {
+    "loader": "@swc-node/register/esm-register",
+    "extension": [
+      "ts"
+    ],
+    "reporter": "spec",
+    "spec": [
+      "test/**/*.ts"
+    ],
+    "watch-files": [
+      "templates/**/*.spec.ts"
+    ]
   }
 }

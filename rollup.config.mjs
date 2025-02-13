@@ -6,7 +6,7 @@ import terser from '@rollup/plugin-terser';
 
 function createInputEntries(sourceDir) {
   return Object.fromEntries(
-    globSync(`${sourceDir}/**/*.ts`, { ignore: ['**/*.d.ts'] }).map(file => [
+    globSync(`${sourceDir}/**/*.ts`, { ignore: ['**/*.d.ts', '**/test/*.spec.ts'] }).map(file => [
       // This remove `src/` as well as the file extension from each
       // file, so e.g. src/nested/foo.js becomes nested/foo
       basename(file, extname(file)),

@@ -3,7 +3,7 @@ import './types/dataview';
 import './types/templater';
 
 /**
- * Global Modifications for the 
+ * Global Modifications types imported at runtime
  */
 declare global {
   /**
