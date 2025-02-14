@@ -1,5 +1,5 @@
 import { App } from 'obsidian';
-import './types/dataview';
+import { dv } from './types/dataview';
 import './types/templater';
 
 /**
@@ -14,6 +14,8 @@ declare global {
       path: string;
     }
   }
+
+  const dv: dv;
 
   /**
    * Input variable for DataView Plugin

@@ -1,6 +1,5 @@
 
-
-function showError(message: string, customConfig?: Record<string, any>) {
+function showError(message: string, customConfig?: HTMLParagraphElement) {
   dv.el(
     'p',
     'There was a problem: ' + message, 

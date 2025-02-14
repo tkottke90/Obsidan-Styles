@@ -4,7 +4,7 @@ import TroubleshootingSetup from '../ts-src/troubleshootingSetup';
 
 const expect = chai.expect;
 
-describe('Templater: Troubleshooting Setup', () => {
+describe('Templater - Troubleshooting Setup', () => {
   afterEach(() => {
     sinon.reset();
   });
