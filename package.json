@@ -1,6 +1,6 @@
 {
   "name": "@tkottke90/obsidan-styles",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Collection of Obsidian Styling for my notebooks that can be imported into the snippets folder",
   "type": "module",
   "scripts": {
