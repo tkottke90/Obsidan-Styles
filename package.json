@@ -5,10 +5,8 @@
   "type": "module",
   "scripts": {
     "build:styles": "sass --no-source-map src:dist/styles",
-    "build:scripts": "cp -r scripts dist/scripts",
     "build:templates": "cp -r templates dist/templates",
-    "build": "rm -rf dist && npm run build:styles && npm run build:scripts && npm run build:templates && npm run build:ts",
-    "build:ts": "tsc",
+    "build": "rm -rf dist && npm run build:styles && npm run bundle && npm run build:templates",
     "bundle": "rollup -c",
     "bundle:dev": "ENV=dev rollup -c",
     "deploy": "source ./bin/deploy.sh",
