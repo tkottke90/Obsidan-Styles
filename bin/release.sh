@@ -74,6 +74,6 @@ echo "> Cleanup..."
 npm config set git-tag-version true
 
 # Delete dist file
-rm -rf $ARTIFACT_FN
+rm -rf $ARTIFACT_FN dist
 
 echo "> Release Complete"

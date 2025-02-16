@@ -74,7 +74,7 @@ getRefFile $SCRIPT_REF "What folder is configured for your Templater Scripts?"
 SCRIPTS=$(cat "./$SCRIPT_REF")
 
 
-if [ ! -d "$SCRIPTS" ]; then
+if [ ! -d "$OBSIDIAN/$SCRIPTS" ]; then
   echo "Could not find $SCRIPTS, please check and try again."
   exit 1
 fi
@@ -82,7 +82,7 @@ fi
 getRefFile $TEMPLATE_REF "What folder is configured for your Templater Templates?"
 TEMPLATES=$(cat "./$TEMPLATE_REF")
 
-if [ ! -d "$TEMPLATES" ]; then
+if [ ! -d "$OBSIDIAN/$TEMPLATES" ]; then
   echo "Could not find $TEMPLATES, please check and try again."
   exit 1
 fi
