@@ -22,6 +22,10 @@ Included items are:
 
 */
 
+import { App } from "obsidian";
+import { Templater } from "./types/templater";
+declare const app: App
+
 const SUB_FOLDERS = [
   'Notes',
   'Assets',
@@ -50,10 +54,10 @@ ${KANBAN_LANES.map(lane => `## ${lane}\n\n\n`)}
 
 /**
  * Templater Script for creating a new project folder with all the fixings
- * @param {*} tp Templater instance
+ * @param {Templater} tp Templater instance
  * @returns 
  */
-module.exports = async (tp) => {
+module.exports = async (tp: Templater) => {
   const projectName = await tp.system.prompt("Project Name", null, true, false);
   
   if (!projectName) {
