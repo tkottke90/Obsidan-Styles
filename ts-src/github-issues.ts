@@ -97,6 +97,10 @@ function drawKanban(issues: IssuesResponseData, laneList: string[]) {
   });
 }
 
+// * Dev Note [2025-02-16] Wont work with the Kanban Plugin using Dataview because Dataview is part of the
+// * render loop so the information is not available on the page for the Kanban Plugin to see/display as 
+// * items on the board.  Will need to switch this to a Templater script.
+
 fetchIssues(input['token'], input['owner'], input['repo'], input['options'])
   .then((result) => drawKanban(result, input['swimLanes'] ?? [ 'Backlog' ]))
   .catch(async (error) => {
