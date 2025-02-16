@@ -1,3 +1,5 @@
+import { Templater } from "./types/templater";
+
 /**
  * Templater Script for Setting up the Title & Filename of a troubleshooting file
  * @param {*} tp Templater instance

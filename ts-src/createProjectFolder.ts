@@ -23,6 +23,7 @@ Included items are:
 */
 
 import { App } from "obsidian";
+import { Templater } from "./types/templater";
 declare const app: App
 
 const SUB_FOLDERS = [

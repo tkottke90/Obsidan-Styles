@@ -1,3 +1,5 @@
+import { Templater } from "./types/templater";
+
 /**
  * Templater Script for creating a new resource folder with a troubleshooting folder
  * @param {Templater} tp Templater instance
