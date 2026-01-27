@@ -16,3 +16,5 @@ export interface dv {
   table: (...args: any[]) => void;
   view: (file: string, configs: Record<string, any>) => Promise<void>;
 };
+
+module.exports = () => ({});

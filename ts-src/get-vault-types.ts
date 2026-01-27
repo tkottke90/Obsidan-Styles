@@ -3,3 +3,5 @@ async function getVaultTypes() {
 }
 
 getVaultTypes();
+
+module.exports = () => ({});

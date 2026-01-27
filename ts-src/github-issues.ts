@@ -106,3 +106,6 @@ fetchIssues(input['token'], input['owner'], input['repo'], input['options'])
   .catch(async (error) => {
     await dv.view("Scripts/error", { message: `There was a problem pulling issues for ${input['owner']}/${input['repo']}` });
   });
+
+
+module.exports = () => ({});

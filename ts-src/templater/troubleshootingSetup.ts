@@ -1,4 +1,4 @@
-import { type Templater } from "./types/templater";
+import { type Templater } from "../types/templater";
 
 /**
  * Templater Script for Setting up the Title & Filename of a troubleshooting file

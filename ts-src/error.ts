@@ -13,3 +13,5 @@ function showError(message: string, customConfig?: HTMLParagraphElement) {
 }
 
 showError(input['message'], input['customConfig']);
+
+module.exports = () => ({});

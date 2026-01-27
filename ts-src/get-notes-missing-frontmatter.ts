@@ -42,3 +42,5 @@ function validateInput(input: Record<string, any>) {
 
 // @ts-ignore
 getNotesMissingFrontmatter(input);
+
+module.exports = () => ({});
