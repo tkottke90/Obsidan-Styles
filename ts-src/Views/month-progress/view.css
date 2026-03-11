@@ -1,0 +1,59 @@
+.block-language-dataviewjs > span {
+  width: 100%;
+}
+
+.month-progress-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 20px 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.progress-bar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.custom-progress-bar {
+  flex: 1;
+  background-color: #e0e0e0;
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4CAF50, #45a049);
+  border-radius: 15px;
+  transition: width 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.progress-percentage {
+  font-size: 16px;
+  font-weight: bold;
+  color: #b1b1b1;
+  min-width: 50px;
+}
+
+.progress-label {
+  font-size: 14px;
+  color: #b1b1b1;
+  margin-bottom: 8px;
+}
+
+.progress-details {
+  font-size: 12px;
+  color: #999;
+  margin-top: 8px;
+}

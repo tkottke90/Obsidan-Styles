@@ -1,0 +1,25 @@
+
+.daily-note--navigator {
+  height: fit-content;
+  min-height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+
+  margin: 0 auto;
+  max-width: 900px;
+}
+
+.daily-note--navigator--item {
+  width: fit-content;
+  text-align: center;
+}
+
+.daily-note--navigator--item > h5 {
+  margin: 0;
+}
+
+.daily-note--navigator--item > a {
+  text-decoration: none;
+}
